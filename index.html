@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#482b58">
-  <title>A Little Piece of My Sunset ♡</title>
+  <title>A Little Piece of My Sunset </title>
 
   <style>
     * {
@@ -391,11 +391,11 @@
   <main>
     <p class="eyebrow">A little something, just because</p>
 
-    <h1>A Little Piece<br>of My Sunset ♡</h1>
+    <h1>A Little Piece<br>of My Sunset 💖</h1>
 
     <p class="subtitle">
-      Some people make an ordinary day feel a little
-      brighter. I made this tiny place for one of them.
+      Some people make an ordinary day feel a little brighter.
+      So I made this tiny place just for you.
       I hope it makes you smile.
     </p>
 
@@ -403,7 +403,7 @@
 
     <section class="section">
       <h2>A letter is waiting...</h2>
-      <p>There's something I'd like you to read.</p>
+      <p>There's something I'd like you to read. 🙂‍↕️</p>
 
       <div class="envelope-area">
         <button class="envelope" id="envelope"
@@ -411,7 +411,7 @@
           <span class="envelope-back"></span>
 
           <span class="letter-preview">
-            To someone who makes my days brighter ♡
+            To someone who makes my days brighter 😊
           </span>
 
           <span class="envelope-flap"></span>
@@ -421,24 +421,24 @@
       </div>
 
       <p class="hint" id="envelopeHint">
-        TAP THE ENVELOPE TO OPEN IT
+        TAP THE ENVELOPE TO OPEN IT 😬😬😬
       </p>
     </section>
 
     <section class="section hidden" id="letterSection">
       <div class="letter-card">
-        <h2>Dear Rose, ♡</h2>
+        <h2>Dear Rose, 💌</h2>
 
         <p class="typed" id="typedText"></p>
 
         <p class="signature" id="signature">
-          — Someone who's happy to know you ♡
+          — Someone who's happy to know you 🫶
         </p>
 
         <div id="continueArea" class="hidden">
           <hr style="border:0;border-top:1px solid #e9ceda">
 
-          <h2>One little question...</h2>
+          <h2>Oops waitt one little question lang...</h2>
           <p style="text-align:center">
             If we could make an ordinary day special,
             what would you choose?
@@ -450,11 +450,15 @@
             </button>
 
             <button class="choice" data-choice="food">
-              🍰 Find somewhere nice to eat
+              🍛 Find somewhere nice to eat
             </button>
 
             <button class="choice" data-choice="adventure">
-              🌷 Go on a random little adventure
+              🌷 Go on a random side quest or little adventure
+            </button>
+
+            <button class="choice" data-choice="workout">
+              🏋🏻 Go for a run or work out together, and let me be your coach hehe 😘 hahahah
             </button>
           </div>
 
@@ -463,17 +467,17 @@
 
           <button id="finalButton" class="pill hidden"
             style="display:block;margin:18px auto 0">
-            One last little surprise ♡
+            One last little surprise 🫨🫨
           </button>
 
           <p id="finalMessage" class="hidden"
             style="text-align:center;color:#b6547e">
             Honestly, any of those would be lovely
-            if I got to share the moment with you. ♡
+            if I got to share the moment with you. 🌹
             <br><br>
             No pressure, no big expectations.
             I'm just glad our paths crossed.
-            I hope this made you smile. 🌷
+            I hope this made you smile and made your day a little brighter. 🌷
           </p>
         </div>
       </div>
@@ -481,7 +485,7 @@
 
     <footer>
       Made with a little time, a little courage,
-      and lots of care. ♡
+      and lots of care. 💓
     </footer>
   </main>
 
@@ -494,25 +498,23 @@
     const musicButton = document.getElementById("musicButton");
 
     // CHANGE THIS MESSAGE TO YOUR OWN LETTER.
-    const message = `I wanted to make you something a little different,
-instead of just sending another ordinary message.
+    const message = `Nakakatawa lang isipin na kahit hindi pa naman tayo gano'n katagal nag-uusap o magkakilala, iba 'yung feeling na naibibigay mo sa'kin.
 
-It's funny how getting to know someone can make
-small things feel a bit more exciting.
+You make me feel special in ways you probably don't even realize. You make my days brighter and give me something to look forward to when I wake up the next day. There's just something about you, especially the way you're so kind, thoughtful, and positive. You have this way of making the world feel a little brighter.
 
-A random conversation, a shared laugh, or even
-a simple notification can brighten an ordinary day.
+A random conversation, a shared laugh, or even a simple notification from you can turn an ordinary day into something special. Honestly, kahit simpleng message o reply mo lang, buo na agad araw ko. 💘
 
-I don't know exactly where life will take us,
-and I don't think everything needs an answer right now.
+I don't know exactly where this feeling will lead us, and I don't think everything needs an answer right now. We don't have to rush anything or figure everything out agad.
 
-I just know that I'm happy I got the chance to know you.
+I just know that I'm genuinely happy na nagkaroon ako ng chance na makausap ka at mas makilala ka pa. And honestly, I'm looking forward to knowing more about you, one conversation at a time.
 
-So here's a little reminder:
-you deserve days that feel warm, people who are kind,
-and moments that give you a genuine reason to smile.
+So here's a little reminder for you:
 
-I hope today is one of those days. ♡`;
+You deserve days that feel warm, people who treat you with kindness, and moments that give you genuine reasons to smile over and over again. I hope you never lose that light in you, the kind of positivity that makes things feel a little better just by being yourself.
+
+I hope today, tomorrow, and even the days after that will give you reasons to smile. And if ever may araw na hindi gaanong maganda, I hope you remember that you still have so many beautiful things ahead of you. and you have people who care about you, including me. 💗 (what a move 😎✨💕)
+
+Keep being you, my little epitome of positivity. I'm really glad I got to know you. 💗💗💗`;
 
     let opened = false;
     let typingTimer;
@@ -584,14 +586,21 @@ I hope today is one of those days. ♡`;
     }
 
     // Interactive choices.
-    const responses = {
-      sunset:
-        "That sounds lovely. I'll save a little sunset in my imagination for us. 🌅",
-      food:
-        "A good meal and a good conversation? That sounds like a pretty great day. 🍰",
-      adventure:
-        "The best little memories sometimes come from plans we never made. 🌷"
-    };
+    
+const responses = {
+  sunset:
+    "Imagine watching the sunset together, talking about random things while the sky turns pink and orange. Sounds like a little moment worth keeping (wag lang sana umulan..), don't you think? 🌅♡",
+
+  food:
+    "Good food, random chikas, and someone to share them with. Honestly, I think the food would taste even better with good company. 🍙💗",
+
+  adventure:
+    "No exact plans, just us figuring things out along the way. Malay mo, the most random side quest becomes one of our favorite memories. 🌷✨",
+
+  workout:
+    "A little workout, a little kwentuhan (baka ndi na tayo nyan makapag workout kakatawa hshshs), and lots of good vibes. Don't worry, I'll guide you naman. But if you get tired, we can take a break and get something good to eat after. Hehehe. 🏃🏻‍♂️💗"
+};
+
 
     document.querySelectorAll(".choice").forEach(button => {
       button.addEventListener("click", () => {
