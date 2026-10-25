@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#482b58">
+  <title>A Little Piece of My Sunset ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #ffc3df;
+      --cream: #fff5e9;
+      --purple: #4a315d;
+      --rose: #c75e89;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Georgia, serif;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% 95%,
+          #f69b91 0%, transparent 40%),
+        linear-gradient(180deg,
+          #211e45 0%, #65436f 38%,
+          #d47c91 72%, #f7b69b 100%);
+      background-attachment: fixed;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 4px;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      color: #fff2d5;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: .25; transform: scale(.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    .sun {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(#ffe4b0, #ff9f9c);
+      box-shadow: 0 0 75px #ffb3a966;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      opacity: .8;
+      pointer-events: none;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 620px);
+      margin: auto;
+      padding: 55px 0 45px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font: 11px Arial, sans-serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ffe3e9;
+    }
+
+    h1 {
+      font-size: clamp(40px, 10vw, 66px);
+      line-height: 1.1;
+      font-weight: normal;
+      font-style: italic;
+      margin: 22px 0 15px;
+      text-shadow: 0 4px 30px #301b4a55;
+    }
+
+    .subtitle {
+      line-height: 1.8;
+      max-width: 400px;
+      margin: 0 auto 24px;
+      color: #fff1f0;
+    }
+
+    .pill {
+      background: #fff0f1;
+      color: #75435f;
+      border: 1px solid #ffffff99;
+      border-radius: 50px;
+      padding: 13px 21px;
+      transition: transform .2s, background .2s;
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+      background: white;
+    }
+
+    .music-button {
+      position: fixed;
+      right: 15px;
+      top: 15px;
+      z-index: 5;
+      border: 1px solid #ffffff66;
+      border-radius: 30px;
+      background: #38274cae;
+      color: white;
+      padding: 11px 14px;
+      backdrop-filter: blur(10px);
+      font: 13px Arial, sans-serif;
+    }
+
+    .section {
+      margin-top: 35px;
+      padding: 25px 20px;
+      background: #ffffff13;
+      border: 1px solid #ffffff50;
+      border-radius: 22px;
+      backdrop-filter: blur(9px);
+      box-shadow: 0 15px 50px #25133420;
+    }
+
+    .section h2 {
+      font-weight: normal;
+      font-size: 27px;
+      margin: 0 0 12px;
+    }
+
+    .section p {
+      line-height: 1.8;
+    }
+
+    /* Envelope */
+    .envelope-area {
+      display: flex;
+      justify-content: center;
+      padding: 32px 0 18px;
+      perspective: 900px;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(100%, 310px);
+      height: 190px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      isolation: isolate;
+      transition: transform .3s;
+    }
+
+    .envelope:hover {
+      transform: translateY(-4px);
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: #f6c6cb;
+      border-radius: 5px;
+      box-shadow: 0 15px 35px #2c173c44;
+    }
+
+    .letter-preview {
+      position: absolute;
+      z-index: 1;
+      left: 8%;
+      right: 8%;
+      top: 8px;
+      height: 160px;
+      padding: 15px;
+      border-radius: 5px;
+      background: var(--cream);
+      color: var(--purple);
+      line-height: 1.6;
+      transition: transform .9s ease;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background: #f9d5d2;
+      clip-path: polygon(0 0, 100% 0, 50% 65%);
+      transform-origin: top;
+      transition: transform .7s ease;
+      backface-visibility: hidden;
+    }
+
+    .envelope-front {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background: #e9aab9;
+      clip-path: polygon(0 100%, 0 0, 50% 58%,
+        100% 0, 100% 100%);
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      background: #c65d82;
+      color: white;
+      box-shadow: 0 4px 10px #6b294455;
+      transition: opacity .3s;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .envelope.open .letter-preview {
+      transform: translateY(-105px);
+    }
+
+    .envelope.open .seal {
+      opacity: 0;
+    }
+
+    .hint {
+      font: 12px Arial, sans-serif;
+      letter-spacing: 1px;
+      color: #ffe6ec;
+    }
+
+    /* Typed letter */
+    .letter-card {
+      text-align: left;
+      background: var(--cream);
+      color: #53384f;
+      border-radius: 14px;
+      padding: 25px 23px;
+      animation: rise .7s ease both;
+    }
+
+    .letter-card h2 {
+      text-align: center;
+      color: #b6547e;
+      font-style: italic;
+    }
+
+    .typed {
+      line-height: 1.95;
+      white-space: pre-line;
+      min-height: 150px;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Choice buttons */
+    .choices {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .choice {
+      border: 1px solid #e7b5d0;
+      border-radius: 12px;
+      padding: 14px 12px;
+      color: #71405f;
+      background: #fff9f6;
+      transition: transform .2s, background .2s;
+    }
+
+    .choice:hover {
+      background: #ffe2ee;
+      transform: scale(1.02);
+    }
+
+    #choiceResponse {
+      margin-top: 20px;
+      color: #9d4674;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: fixed;
+      z-index: 4;
+      bottom: -35px;
+      pointer-events: none;
+      animation: float-up linear forwards;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+      15% { opacity: .9; }
+      100% {
+        transform: translateY(-110vh) rotate(30deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      padding: 30px 0 10px;
+      font-size: 13px;
+      color: #ffe3e9;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding-top: 80px;
+      }
+
+      .section {
+        padding: 22px 15px;
+      }
+
+      .letter-card {
+        padding: 22px 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <button class="music-button" id="musicButton"
+    aria-pressed="false">
+    ♫ Play music
+  </button>
+
+  <main>
+    <p class="eyebrow">A little something, just because</p>
+
+    <h1>A Little Piece<br>of My Sunset ♡</h1>
+
+    <p class="subtitle">
+      Some people make an ordinary day feel a little
+      brighter. I made this tiny place for one of them.
+      I hope it makes you smile.
+    </p>
+
+    <p>For you, sunshine. ☀️</p>
+
+    <section class="section">
+      <h2>A letter is waiting...</h2>
+      <p>There's something I'd like you to read.</p>
+
+      <div class="envelope-area">
+        <button class="envelope" id="envelope"
+          aria-label="Open your letter">
+          <span class="envelope-back"></span>
+
+          <span class="letter-preview">
+            To someone who makes my days brighter ♡
+          </span>
+
+          <span class="envelope-flap"></span>
+          <span class="envelope-front"></span>
+          <span class="seal">♥</span>
+        </button>
+      </div>
+
+      <p class="hint" id="envelopeHint">
+        TAP THE ENVELOPE TO OPEN IT
+      </p>
+    </section>
+
+    <section class="section hidden" id="letterSection">
+      <div class="letter-card">
+        <h2>Dear Rose, ♡</h2>
+
+        <p class="typed" id="typedText"></p>
+
+        <p class="signature" id="signature">
+          — Someone who's happy to know you ♡
+        </p>
+
+        <div id="continueArea" class="hidden">
+          <hr style="border:0;border-top:1px solid #e9ceda">
+
+          <h2>One little question...</h2>
+          <p style="text-align:center">
+            If we could make an ordinary day special,
+            what would you choose?
+          </p>
+
+          <div class="choices">
+            <button class="choice" data-choice="sunset">
+              🌅 Watch the sunset together
+            </button>
+
+            <button class="choice" data-choice="food">
+              🍰 Find somewhere nice to eat
+            </button>
+
+            <button class="choice" data-choice="adventure">
+              🌷 Go on a random little adventure
+            </button>
+          </div>
+
+          <p id="choiceResponse" class="hidden"
+            aria-live="polite"></p>
+
+          <button id="finalButton" class="pill hidden"
+            style="display:block;margin:18px auto 0">
+            One last little surprise ♡
+          </button>
+
+          <p id="finalMessage" class="hidden"
+            style="text-align:center;color:#b6547e">
+            Honestly, any of those would be lovely
+            if I got to share the moment with you. ♡
+            <br><br>
+            No pressure, no big expectations.
+            I'm just glad our paths crossed.
+            I hope this made you smile. 🌷
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Made with a little time, a little courage,
+      and lots of care. ♡
+    </footer>
+  </main>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const envelopeHint = document.getElementById("envelopeHint");
+    const letterSection = document.getElementById("letterSection");
+    const typedText = document.getElementById("typedText");
+    const continueArea = document.getElementById("continueArea");
+    const musicButton = document.getElementById("musicButton");
+
+    // CHANGE THIS MESSAGE TO YOUR OWN LETTER.
+    const message = `I wanted to make you something a little different,
+instead of just sending another ordinary message.
+
+It's funny how getting to know someone can make
+small things feel a bit more exciting.
+
+A random conversation, a shared laugh, or even
+a simple notification can brighten an ordinary day.
+
+I don't know exactly where life will take us,
+and I don't think everything needs an answer right now.
+
+I just know that I'm happy I got the chance to know you.
+
+So here's a little reminder:
+you deserve days that feel warm, people who are kind,
+and moments that give you a genuine reason to smile.
+
+I hope today is one of those days. ♡`;
+
+    let opened = false;
+    let typingTimer;
+    let audioContext;
+    let musicTimer;
+    let musicPlaying = false;
+    let noteIndex = 0;
+
+    // Create background stars.
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 45; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.textContent = Math.random() > 0.5 ? "✦" : "·";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 75 + "%";
+      star.style.fontSize = (8 + Math.random() * 12) + "px";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      stars.appendChild(star);
+    }
+
+    // Open envelope and reveal the letter.
+    envelope.addEventListener("click", () => {
+      if (opened) return;
+      opened = true;
+
+      envelope.classList.add("open");
+      envelopeHint.textContent = "A LITTLE NOTE JUST FOR YOU ♡";
+
+      setTimeout(() => {
+        letterSection.classList.remove("hidden");
+        letterSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        startTyping();
+        makeHearts(18);
+      }, 650);
+    });
+
+    // Type the letter gradually.
+    function startTyping() {
+      let index = 0;
+      typedText.textContent = "";
+
+      function typeNext() {
+        if (index < message.length) {
+          typedText.textContent += message[index];
+          index++;
+
+          // Keep the newest text visible.
+          if (index % 5 === 0) {
+            typedText.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest"
+            });
+          }
+
+          typingTimer = setTimeout(typeNext, 27);
+        } else {
+          continueArea.classList.remove("hidden");
+          makeHearts(12);
+        }
+      }
+
+      typeNext();
+    }
+
+    // Interactive choices.
+    const responses = {
+      sunset:
+        "That sounds lovely. I'll save a little sunset in my imagination for us. 🌅",
+      food:
+        "A good meal and a good conversation? That sounds like a pretty great day. 🍰",
+      adventure:
+        "The best little memories sometimes come from plans we never made. 🌷"
+    };
+
+    document.querySelectorAll(".choice").forEach(button => {
+      button.addEventListener("click", () => {
+        const response = document.getElementById("choiceResponse");
+
+        response.textContent = responses[button.dataset.choice];
+        response.classList.remove("hidden");
+
+        document.getElementById("finalButton")
+          .classList.remove("hidden");
+
+        makeHearts(10);
+      });
+    });
+
+    document.getElementById("finalButton")
+      .addEventListener("click", () => {
+        document.getElementById("finalMessage")
+          .classList.remove("hidden");
+
+        makeHearts(28);
+
+        document.getElementById("finalMessage")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+      });
+
+    // Floating hearts.
+    function makeHearts(amount) {
+      for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("span");
+
+        heart.className = "floating-heart";
+        heart.textContent = Math.random() > 0.4 ? "♥" : "♡";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (14 + Math.random() * 23) + "px";
+        heart.style.color = [
+          "#fff0f4", "#ffc0dc", "#ffe2ae", "#f7a7b7"
+        ][Math.floor(Math.random() * 4)];
+
+        heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+
+        heart.addEventListener("animationend", () => heart.remove());
+      }
+    }
+
+    // A gentle, generated ambient melody.
+    // No external audio file is needed.
+    function playNote(frequency, duration) {
+      if (!audioContext || audioContext.state !== "running") return;
+
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        0.045, audioContext.currentTime + 0.08
+      );
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001, audioContext.currentTime + duration
+      );
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + duration);
+    }
+
+    const melody = [
+      261.63, 329.63, 392.00, 329.63,
+      293.66, 349.23, 440.00, 349.23,
+      261.63, 329.63, 392.00, 523.25,
+      440.00, 392.00, 329.63, 293.66
+    ];
+
+    musicButton.addEventListener("click", async () => {
+      try {
+        if (!audioContext) {
+          const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+          if (!AudioContextClass) {
+            musicButton.textContent = "Music unavailable";
+            return;
+          }
+
+          audioContext = new AudioContextClass();
+        }
+
+        if (!musicPlaying) {
+          await audioContext.resume();
+          musicPlaying = true;
+          musicButton.textContent = "♫ Pause music";
+          musicButton.setAttribute("aria-pressed", "true");
+
+          playMelody();
+          musicTimer = setInterval(playMelody, 3200);
+        } else {
+          musicPlaying = false;
+          clearInterval(musicTimer);
+          await audioContext.suspend();
+
+          musicButton.textContent = "♫ Play music";
+          musicButton.setAttribute("aria-pressed", "false");
+        }
+      } catch (error) {
+        musicButton.textContent = "Music unavailable";
+        console.error("Audio could not start:", error);
+      }
+    });
+
+    function playMelody() {
+      if (!musicPlaying) return;
+
+      const note = melody[noteIndex % melody.length];
+      playNote(note, 1.8);
+      noteIndex++;
+    }
+
+    // A few hearts drift through the background.
+    setInterval(() => makeHearts(1), 1300);
+  </script>
+</body>
+</html>
